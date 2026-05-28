@@ -1,0 +1,86 @@
+<div class="row justify-content-center" *ngIf="project">
+  <div class="col-md-8 col-lg-6">
+    <div class="card-premium p-4 mt-4 mb-5">
+      <h2 class="card-title text-center mb-4">{{ title }}</h2>
+
+      <div *ngIf="status === 'success'" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        Projecte editat correctament, pots veure'l <strong><a [routerLink]="['/project', project._id]" class="alert-link">aquí</a></strong>.
+        <button type="button" class="btn-close" (click)="status = ''" aria-label="Close"></button>
+      </div>
+
+      <div *ngIf="status === 'failed'" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        Error en editar el projecte. Teniu tot el backend engegat?
+        <button type="button" class="btn-close" (click)="status = ''" aria-label="Close"></button>
+      </div>
+
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label fw-bold">Nom</label>
+          <input type="text" id="name" class="form-control form-control-custom" formControlName="name" placeholder="Nom del projecte">
+          <div *ngIf="projectForm.get('name')?.invalid && projectForm.get('name')?.touched" class="text-danger mt-1 small">
+            Cal que posis el nom
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label fw-bold">Descripció</label>
+          <textarea id="description" class="form-control form-control-custom" formControlName="description" rows="3" placeholder="Descripció breu"></textarea>
+          <div *ngIf="projectForm.get('description')?.invalid && projectForm.get('description')?.touched" class="text-danger mt-1 small">
+            Cal que posis la descripció
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="category" class="form-label fw-bold">Categoria</label>
+          <input type="text" id="category" class="form-control form-control-custom" formControlName="category" placeholder="Backend, Frontend, etc.">
+          <div *ngIf="projectForm.get('category')?.invalid && projectForm.get('category')?.touched" class="text-danger mt-1 small">
+            Cal que posis la categoria
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="year" class="form-label fw-bold">Any</label>
+            <input type="number" id="year" class="form-control form-control-custom" formControlName="year">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="langs" class="form-label fw-bold">Llenguatges utilitzats</label>
+            <input type="text" id="langs" class="form-control form-control-custom" formControlName="langs" placeholder="NodeJS, Angular, etc.">
+            <div *ngIf="projectForm.get('langs')?.invalid && projectForm.get('langs')?.touched" class="text-danger mt-1 small">
+              Cal que posis els llenguatges utilitzats
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="image" class="form-label fw-bold">Imatge del Projecte</label>
+          <div class="mb-2" *ngIf="project.image && project.image !== 'null'">
+             <img src="{{ url + 'get-image/' + project.image }}" alt="Imatge actual" style="width: 100px; border-radius: 8px;" class="mb-2 shadow-sm">
+          </div>
+          <input type="file" id="image" class="form-control form-control-custom" (change)="fileChangeEvent($event)">
+        </div>
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-warning fw-bold text-dark w-100" [disabled]="projectForm.invalid">
+            <i class="bi bi-save me-1"></i> Desar Canvis
+          </button>
+        </div>
+      </form>
+      
+      <div class="mt-4 text-center">
+         <a [routerLink]="['/project', project._id]" class="text-decoration-none text-secondary"><i class="bi bi-arrow-left"></i> Tornar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row align-items-center text-center mt-5" *ngIf="!project" style="min-height: 50vh;">
+  <div class="col">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <h4 class="text-muted mt-3">Carregant dades...</h4>
+  </div>
+</div>

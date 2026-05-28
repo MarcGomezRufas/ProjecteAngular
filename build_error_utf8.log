@@ -1,0 +1,64 @@
+﻿[33mÔØ»[39m Building...
+[32mÔ£ö[39m Building...
+Application bundle generation failed. [2.856 seconds]
+
+node.exe : [1m[31m[31mX [
+41;31m[[41;97mERROR[41;31m]
+[0m [1mCould not resolve "~
+bootstrap/dist/css/bootstrap.
+min.css"[0m
+En línea: 1 Carácter: 1
++ & "C:\Program Files\nodejs/
+node.exe" "C:\Users\marcg\App
+Data\Roaming\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: ([1m[3  
+  1m[31mX...ap.min.css"[   
+ 0m:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+
+    src/styles.css:1:8:
+[37m      1 Ôöé @import [32
+m"~bootstrap/dist/css/bootstr
+ap.min.css"[37m;
+        ÔòÁ         [32m~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~[0m
+
+  You can mark the path "~boo
+tstrap/dist/css/bootstrap.min
+.css" as external to exclude 
+it from the bundle, which wil
+l remove this error and leave
+ the unresolved path in the b
+undle.
+
+
+[31mX [41;31m[[41;97mERROR
+[41;31m][0m [1mCould not r
+esolve "~bootstrap-icons/font
+/bootstrap-icons.css"[0m
+
+    src/styles.css:2:8:
+[37m      2 Ôöé @import [32
+m"~bootstrap-icons/font/boots
+trap-icons.css"[37m;
+        ÔòÁ         [32m~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~[0m
+
+  You can mark the path "~boo
+tstrap-icons/font/bootstrap-i
+cons.css" as external to excl
+ude it from the bundle, which
+ will remove this error and l
+eave the unresolved path in t
+he bundle.
+
+[39m[22m

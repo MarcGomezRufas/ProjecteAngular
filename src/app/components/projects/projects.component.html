@@ -1,0 +1,32 @@
+<div class="row mb-5">
+  <div class="col-12">
+    <h2 class="display-6 fw-bold border-bottom pb-3 mb-4 text-dark">Projectes</h2>
+  </div>
+</div>
+
+<div class="row g-4" *ngIf="projects && projects.length > 0; else noProjects">
+  <div class="col-md-6 col-lg-4" *ngFor="let project of projects">
+    <div class="card-premium h-100" [routerLink]="['/project', project._id]" style="cursor: pointer;">
+      <div class="position-relative overflow-hidden" style="height: 200px; background-color: #f1f2f6;">
+        <img *ngIf="project.image && project.image !== 'null'" src="{{ url + 'get-image/' + project.image }}" class="card-img-top h-100 w-100" style="object-fit: cover; transition: transform 0.5s;" alt="{{ project.name }}">
+        <div *ngIf="!project.image || project.image === 'null'" class="d-flex justify-content-center align-items-center h-100 text-muted">
+          <i class="bi bi-image fs-1"></i>
+        </div>
+      </div>
+      <div class="card-body p-4 text-center">
+        <h5 class="card-title fw-bold text-dark mb-1">{{ project.name }}</h5>
+        <p class="card-text text-muted mb-0 small">{{ project.langs }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noProjects>
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center pt-5 pb-5">
+      <i class="bi bi-folder-x display-1 text-muted opacity-50 mb-3"></i>
+      <h3 class="fw-light text-muted">No hi ha projectes per mostrar</h3>
+      <p class="text-secondary mt-3">Pots ser el primer en <a routerLink="/create-project" class="text-decoration-none fw-bold">crear un projecte</a>.</p>
+    </div>
+  </div>
+</ng-template>
